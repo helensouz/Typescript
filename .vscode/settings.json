@@ -1,0 +1,9 @@
+//podemos configurar qualquer coisa NESSE PROJETO
+
+
+    {
+        "code-runner.executorMap": {          
+            "typescript": "npx ts-node --files",
+          
+        }
+    }
