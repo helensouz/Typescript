@@ -2,17 +2,11 @@
 
 //exemplo usando classese
 
-@decorator
-export class Animal{
-    constructor(
-        public nome: string,
-        public cor: string){}
-}
 
 //decorator ira decorar a classe . decorator recebe essa classe
 
-function decorator<T extends new (...args: any[]) => any >(target: T){ //espera receber uma target\
-
+function inverteNomeECor<T extends new (...args: any[]) => any >(target: T){ //espera receber uma target\
+    console.log('sou o decorador e recebi', target)
     return class extends target{
         cor: string;
         nome: string
@@ -29,6 +23,16 @@ function decorator<T extends new (...args: any[]) => any >(target: T){ //espera 
     };
 }
 
-const animal = new Animal ('preto', 'nina');
-console.log(animal)
+@inverteNomeECor
+export class Animal{
+    constructor(
+        public nome: string,
+        public cor: string){
+            console.log('sou a classe')
+        }
+}
+
+
+// const animal = new Animal ('preto', 'nina');
+// console.log(animal)
 
