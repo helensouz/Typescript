@@ -1,9 +1,13 @@
-import { OrderStatus } from "../../srp/entities/interfaces/order-status"
-import { ShoppingCard } from "../../srp/entities/shopping-cart"
-import { Messaging } from "../../srp/services/messagins"
-import { Persistence } from "../../srp/services/persistence"
+import { OrderStatus } from "./interfaces/order-status";
+import { Messaging } from "../services/messagins";
+import { Persistence } from "../services/persistence";
+import { ShoppingCard } from "./shopping-cart";
 
 
+/**
+ * Open/close
+ * Entidades devem estar abertas para extensao, mas fechadas para modificacao
+ */
 
 export class Order{
     private _orderStatus:  OrderStatus = 'open'  
@@ -24,7 +28,7 @@ export class Order{
             return
         }
        this._orderStatus = 'closed'
-        this.messaging.sendMessage(`seu pedido foi com total de ${this.cart.total()} foi recebido.`)
+        this.messaging.sendMessage(`seu pedido foi com total com desconto de ${this.cart.totalWithDIcount()} foi recebido.`)
         this.persistence.saveOrder();
         this.cart.clear()
     
